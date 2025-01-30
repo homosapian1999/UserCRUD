@@ -5,7 +5,9 @@
   "main": "dist/server.js",
   "scripts": {
     "watch": "tsc -w",
+    "build": "tsc",
     "nodemon": "nodemon --delay 0.1 dist/server.js",
+    "start": "node dist/server.js",
     "dev": "concurrently npm:watch npm:nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
