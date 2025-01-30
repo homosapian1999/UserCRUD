@@ -1,11 +1,18 @@
 import express from "express";
 import { validate } from "../middlewares/validate";
 import { userSchema } from "../validators/userValidator";
-import { createUser, getUsers } from "../controllers/user.controller";
+import {
+  createUser,
+  deleteUser,
+  getUsers,
+  updateUser,
+} from "../controllers/user.controller";
 
 const userRoutes = express.Router();
 
 userRoutes.get("/users", getUsers);
 userRoutes.post("/create-user", validate(userSchema), createUser);
+userRoutes.post("/update-user/:id", validate(userSchema), updateUser);
+userRoutes.post("/delete-user/:id", deleteUser);
 
 export default userRoutes;
