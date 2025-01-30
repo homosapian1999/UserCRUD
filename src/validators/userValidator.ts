@@ -10,6 +10,9 @@ export const userSchema = Joi.object({
     "string.email": "Email should be a valid email",
     "string.empty": "Email is required",
   }),
+  id: Joi.string().optional().messages({
+    "string.base": "Id should be a string",
+  }),
   age: Joi.number().optional().messages({
     "number.base": "Age should be a number",
   }),

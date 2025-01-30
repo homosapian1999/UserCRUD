@@ -6,6 +6,7 @@ export type UserType = {
   age?: number;
   mobile: string;
   interests: string[];
+  isDeleted?: boolean;
 };
 
 export enum Interests {
@@ -40,6 +41,10 @@ const UserSchema = new Schema({
   interests: {
     type: [String],
     enum: Object.values(Interests),
+  },
+  isDeleted: {
+    type: Boolean,
+    default: false,
   },
 });
 
