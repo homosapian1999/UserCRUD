@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 2 # Can scale later
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: backend-backend:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_CONNECTION_STRING
+              value: "mongodb://mongo-service:27017/user" # Use the MongoDB service
+          volumeMounts:
+            - name: env-config
+              mountPath: /app/.env
+              subPath: .env
+      volumes:
+        - name: env-config
+          configMap:
+            name: backend-env

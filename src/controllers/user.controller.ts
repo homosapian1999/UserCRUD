@@ -11,6 +11,16 @@ export const getUsers = async (req: Request, res: Response) => {
   }
 };
 
+export const getUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const user = await User.find({ _id: id, isDeleted: false });
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ message: (err as Error).message });
+  }
+};
+
 export const createUser = async (req: Request, res: Response) => {
   try {
     const { email, mobile } = req.body as AddUserRequestType;
@@ -48,7 +58,10 @@ export const updateUser = async (req: Request, res: Response) => {
     }
     const { email, mobile } = req.body as AddUserRequestType;
 
-    if (user.email === email || user.mobile === mobile) {
+    if (
+      (user.email === email || user.mobile === mobile) &&
+      user._id.toString() != id
+    ) {
       let errorMessage = "";
       if (user.email === email && user.mobile === mobile) {
         errorMessage = "Email and Mobile already exists";
