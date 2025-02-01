@@ -9,4 +9,4 @@ spec:
   - protocol: TCP
     port: 8080  # External port
     targetPort: 8080  # Backend container port
-  type: ClusterIP  # Internal communication within the cluster
+  type: NodePort    # Internal communication within the cluster
