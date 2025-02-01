@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: backend-backend:latest
+          image: homosapian1999/backend:latest
           ports:
             - containerPort: 8080
           env:
